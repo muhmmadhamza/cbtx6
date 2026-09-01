@@ -1,55 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CBATX | Private Bookkeeping &amp; Financial Advisory for Texas Businesses</title>
+<title>CBATX | The Ledger — Bookkeeping for Texas Businesses</title>
 <meta name="description" content="CBATX provides professional bookkeeping, reconciliation, and financial reporting for small businesses across Texas. Accurate books, transparent pricing, human support.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #12151B;
-    --bg-deep: #0B0D12;
-    --panel: #1B1F28;
-    --panel-2: #20242E;
-    --line: rgba(237,239,243,0.10);
-    --line-strong: rgba(237,239,243,0.16);
-    --gold: #C9A227;
-    --gold-soft: #E0C05C;
-    --text: #EDEFF3;
-    --text-soft: #99A2B0;
-    --radius: 10px;
+    --paper: #F5F1E4;
+    --paper-deep: #EDE7D4;
+    --rule: #C7D1BE;
+    --ink: #16302A;
+    --ink-2: #0E211C;
+    --brass: #A9752F;
+    --brass-light: #C99A54;
+    --text-soft: #52655A;
+    --radius: 3px;
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
   body{
-    font-family:'Inter', -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height:1.65;
+    font-family:'Source Sans 3', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
   h1,h2,h3,h4{
-    font-family:'Cormorant Garamond', Georgia, serif;
+    font-family:'Spectral', Georgia, serif;
     font-weight:600;
-    line-height:1.15;
-    color: var(--text);
-    letter-spacing: 0.002em;
+    line-height:1.18;
+    color: var(--ink);
   }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
   a{ color:inherit; text-decoration:none; }
   ul{ list-style:none; }
   img{ max-width:100%; display:block; }
   button{ font-family:inherit; cursor:pointer; border:none; background:none; }
-  :focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; }
+  :focus-visible{ outline: 2px solid var(--brass); outline-offset: 3px; }
   @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+    *{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior:auto !important; }
   }
 
-  .wrap{ max-width: 1180px; margin:0 auto; padding: 0 32px; }
+  .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* faint ledger ruling used as a background texture on paper sections */
+  .ruled{
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 43px,
+      var(--rule) 43px,
+      var(--rule) 44px
+    );
+  }
 
   .reveal{ opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.in{ opacity:1; transform:none; }
@@ -57,266 +64,321 @@
   /* ---------- Nav ---------- */
   header.site-nav{
     position: sticky; top:0; z-index:100;
-    background: rgba(18,21,27,0.88);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+    border-bottom: 1px solid var(--ink);
   }
-  .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:82px; }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 84px;
+  }
   .brand{ display:flex; align-items:center; gap:12px; }
   .brand-mark{
-    width:38px; height:38px; border-radius:50%;
-    border: 1px solid var(--gold);
+    width:40px; height:40px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
     display:flex; align-items:center; justify-content:center;
-    font-family:'Cormorant Garamond', serif; font-weight:700; font-size:1.05rem; color: var(--gold);
+    font-family:'Spectral', serif; font-weight:700; font-size:1rem;
     flex-shrink:0;
   }
-  .brand-text .name{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:1.15rem; letter-spacing:0.02em; }
-  .brand-text .sub{ display:block; font-size:0.62rem; letter-spacing:0.12em; color: var(--text-soft); margin-top:2px; }
-  nav.primary-links{ display:flex; align-items:center; gap:34px; }
+  .brand-text .name{ font-family:'Spectral', serif; font-weight:600; font-size:1.05rem; }
+  .brand-text .sub{
+    display:block; font-family:'IBM Plex Mono', monospace; font-size:0.62rem;
+    letter-spacing:0.06em; color: var(--text-soft); margin-top:2px;
+  }
+  nav.primary-links{ display:flex; align-items:center; gap:36px; }
   nav.primary-links a{
-    font-size:0.86rem; color: var(--text-soft); position:relative; padding:4px 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    position:relative;
+    padding: 4px 0;
     transition: color .2s ease;
   }
-  nav.primary-links a:hover, nav.primary-links a:focus-visible{ color: var(--text); }
-  nav.primary-links a.active{ color: var(--gold-soft); }
+  nav.primary-links a:hover, nav.primary-links a:focus-visible{ color: var(--ink); }
+  nav.primary-links a.active{ color: var(--ink); }
   nav.primary-links a.active::after{
-    content:""; position:absolute; left:0; right:0; bottom:-8px; height:1px; background: var(--gold);
+    content:""; position:absolute; left:0; right:0; bottom:-8px; height:2px; background: var(--brass);
   }
   .nav-actions{ display:flex; align-items:center; gap:16px; }
 
   .btn{
     display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    padding: 12px 24px; border-radius:6px; font-weight:600; font-size:0.88rem;
-    border: 1px solid transparent;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-weight:600; font-size:0.9rem;
+    border: 1.5px solid transparent;
     transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
     white-space:nowrap;
   }
-  .btn-gold{ background: var(--gold); color: var(--bg-deep); }
-  .btn-gold:hover{ background: var(--gold-soft); transform: translateY(-1px); }
-  .btn-line{ background:transparent; border-color: var(--line-strong); color: var(--text); }
-  .btn-line:hover{ border-color: var(--gold); color: var(--gold-soft); }
-  .btn-panel{ background: var(--panel-2); color: var(--text); border-color: var(--line-strong); }
-  .btn-panel:hover{ border-color: var(--gold); color: var(--gold-soft); }
+  .btn-brass{ background: var(--brass); color: var(--paper); }
+  .btn-brass:hover{ background: var(--ink); transform: translateY(-1px); }
+  .btn-line{ background: transparent; border-color: var(--ink); color: var(--ink); }
+  .btn-line:hover{ border-color: var(--brass); color: var(--brass); }
+  .btn-line-light{ background: transparent; border-color: rgba(245,241,228,0.4); color: var(--paper); }
+  .btn-line-light:hover{ border-color: var(--brass-light); color: var(--brass-light); }
+  .btn-ink{ background: var(--ink); color: var(--paper); }
+  .btn-ink:hover{ background: var(--ink-2); }
   .btn-full{ width:100%; }
 
   .menu-toggle{ display:none; flex-direction:column; gap:5px; padding:8px; }
-  .menu-toggle span{ width:22px; height:2px; background: var(--text); display:block; }
+  .menu-toggle span{ width:22px; height:2px; background:var(--ink); display:block; }
+
   .mobile-drawer{
-    position:fixed; inset:82px 0 0 0; background: var(--bg-deep); z-index:99;
-    padding:32px; display:flex; flex-direction:column; gap:4px;
+    position:fixed; inset: 84px 0 0 0; background: var(--paper); z-index:99;
+    padding: 32px; display:flex; flex-direction:column; gap:4px;
     transform: translateX(100%); transition: transform .28s ease;
   }
   .mobile-drawer.open{ transform: translateX(0); }
-  .mobile-drawer a{ font-size:1rem; color: var(--text); padding:16px 4px; border-bottom:1px solid var(--line); }
+  .mobile-drawer a{
+    font-family:'IBM Plex Mono', monospace; font-size:1rem; color: var(--ink);
+    padding: 16px 4px; border-bottom: 1px solid var(--rule);
+  }
   .mobile-drawer .btn{ margin-top:24px; }
 
   /* ---------- Hero ---------- */
-  .hero{
-    padding: 92px 0 0;
-    background:
-      radial-gradient(900px 460px at 88% -8%, rgba(201,162,39,0.09), transparent 60%),
-      linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-    position:relative;
+  .hero{ padding: 88px 0 0; position:relative; }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:64px; align-items:center;
+    padding-bottom: 80px;
   }
-  .hero-grid{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap:56px; align-items:center; padding-bottom:84px; }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:10px; color: var(--gold-soft);
-    font-size:0.82rem; font-weight:600; letter-spacing:0.04em; margin-bottom:22px;
+  .ledger-tab{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.74rem; letter-spacing:0.05em;
+    color: var(--brass); border: 1px solid var(--brass); border-radius: 20px;
+    padding: 6px 14px; margin-bottom: 26px;
   }
-  .eyebrow::before{ content:""; width:26px; height:1px; background: var(--gold); display:inline-block; }
-  .hero h1{ font-size: clamp(2.5rem, 4.6vw, 3.8rem); margin-bottom:22px; }
-  .hero h1 .line-gold{ color: var(--gold-soft); display:block; }
-  .hero-lede{ font-size:1.08rem; color: var(--text-soft); max-width:500px; margin-bottom:34px; }
-  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:26px; }
-  .trust-line{ font-size:0.86rem; color: var(--text-soft); display:flex; align-items:center; gap:10px; }
-  .trust-line .dot{ width:6px; height:6px; border-radius:50%; background: var(--gold); display:inline-block; }
-
-  .vault-visual{
-    position:relative;
-    border-radius: 16px;
-    aspect-ratio: 4/4.4;
-    background: radial-gradient(circle at 50% 45%, #1E232E 0%, #14171D 70%, #0B0D12 100%);
-    border: 1px solid var(--line);
-    display:flex; align-items:center; justify-content:center;
-    overflow:hidden;
+  .ledger-tab .n{ font-weight:600; }
+  .hero h1{
+    font-size: clamp(2.3rem, 4.2vw, 3.4rem);
+    margin-bottom: 22px;
   }
-  .vault-visual svg{ width:78%; height:78%; }
-  .vault-caption{
-    position:absolute; left:22px; bottom:22px; right:22px;
-    background: rgba(11,13,18,0.7);
-    border: 1px solid rgba(201,162,39,0.3);
-    border-radius:10px; padding:14px 18px;
-    display:flex; align-items:center; gap:12px;
+  .hero h1 em{ font-style:normal; color: var(--brass); }
+  .hero-lede{
+    font-size: 1.06rem; color: var(--text-soft); max-width: 500px; margin-bottom: 34px;
   }
-  .vault-caption .dotmk{ width:9px; height:9px; border-radius:50%; background: var(--gold); flex-shrink:0; }
-  .vault-caption-text{ font-size:0.8rem; }
-  .vault-caption-text strong{ display:block; color: var(--text); font-weight:600; margin-bottom:2px; }
-  .vault-caption-text span{ color: var(--text-soft); }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom: 28px; }
+  .hero-footnote{
+    font-family:'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--text-soft);
+    display:flex; align-items:center; gap:8px;
+  }
+  .hero-footnote::before{ content:"—"; color: var(--brass); }
 
-  /* ---------- Trust bar ---------- */
-  .trust-bar{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); background: var(--bg-deep); }
-  .trust-bar-inner{ display:flex; justify-content:space-between; align-items:center; padding:24px 0; flex-wrap:wrap; gap:18px; }
-  .trust-item{ display:flex; align-items:center; gap:10px; font-size:0.86rem; font-weight:500; color: var(--text-soft); flex:1 1 180px; justify-content:center; }
-  .trust-item svg{ color: var(--gold); flex-shrink:0; }
-
-  /* ---------- Sections ---------- */
-  section{ padding: 100px 0; }
-  .section-panel{ background: var(--bg-deep); }
-  .section-head{ max-width:600px; margin-bottom:52px; }
-  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
-  .section-kicker{ font-size:0.84rem; font-weight:600; color: var(--gold-soft); margin-bottom:12px; }
-  .section-head h2{ font-size: clamp(1.9rem, 3vw, 2.5rem); margin-bottom:16px; }
-  .section-head p{ color: var(--text-soft); font-size:1rem; }
-
-  /* ---------- Services ---------- */
-  .services-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
-  .service-card{
-    background: var(--panel);
-    border: 1px solid var(--line);
+  .ledger-card{
+    background: var(--paper-deep);
+    border: 1.5px solid var(--ink);
     border-radius: var(--radius);
-    padding: 32px 28px;
-    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    padding: 30px;
+    position:relative;
   }
-  .service-card:hover{
-    transform: translateY(-4px);
-    border-color: rgba(201,162,39,0.4);
-    background: var(--panel-2);
+  .ledger-card-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    border-bottom: 1.5px solid var(--ink); padding-bottom:16px; margin-bottom:18px;
   }
-  .service-icon{
-    width:44px; height:44px; border-radius:9px;
-    background: rgba(201,162,39,0.12);
-    display:flex; align-items:center; justify-content:center; color: var(--gold-soft);
-    margin-bottom:20px;
+  .ledger-card-head .title{ font-family:'Spectral', serif; font-size:1.1rem; font-weight:600; }
+  .ledger-card-head .ref{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color: var(--text-soft); }
+  .ledger-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 10px 0; border-bottom: 1px dashed var(--rule);
+    font-family:'IBM Plex Mono', monospace; font-size:0.82rem;
   }
-  .service-card h3{ font-size:1.18rem; margin-bottom:10px; }
-  .service-card p{ color: var(--text-soft); font-size:0.9rem; }
+  .ledger-row:last-child{ border-bottom:none; }
+  .ledger-row .label{ color: var(--text-soft); }
+  .ledger-row .val{ color: var(--ink); font-weight:600; }
+  .ledger-row .val.brass{ color: var(--brass); }
+  .ledger-stamp{
+    position:absolute; top:-14px; right:24px;
+    width:74px; height:74px; border-radius:50%;
+    border: 2px solid var(--brass);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; transform: rotate(-8deg);
+    background: var(--paper);
+  }
+  .ledger-stamp span{
+    font-family:'IBM Plex Mono', monospace; font-size:0.6rem; font-weight:600;
+    color: var(--brass); letter-spacing:0.04em; line-height:1.3;
+  }
+
+  /* ---------- Trust strip ---------- */
+  .trust-strip{ border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .trust-strip-inner{
+    display:flex; justify-content:space-between; padding: 22px 0; flex-wrap:wrap; gap:16px;
+  }
+  .trust-item{
+    font-family:'IBM Plex Mono', monospace; font-size: 0.76rem; color: var(--text-soft);
+    display:flex; align-items:center; gap:8px; flex:1 1 180px; justify-content:center;
+  }
+  .trust-item .mk{ color: var(--brass); }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 96px 0; }
+  .section-head{ max-width: 600px; margin-bottom: 52px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-no{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color: var(--brass);
+    margin-bottom: 12px; letter-spacing:0.04em;
+  }
+  .section-head h2{ font-size: clamp(1.85rem, 2.8vw, 2.4rem); margin-bottom:14px; }
+  .section-head p{ color: var(--text-soft); font-size: 1rem; }
+
+  /* ---------- Services as ledger entries ---------- */
+  .entry-list{ border-top: 1.5px solid var(--ink); }
+  .entry{
+    display:grid;
+    grid-template-columns: 70px 1fr 1.4fr;
+    gap: 28px;
+    align-items:center;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: background .2s ease;
+  }
+  .entry:hover{ background: rgba(169,117,47,0.05); }
+  .entry-no{ font-family:'IBM Plex Mono', monospace; font-size:0.95rem; color: var(--brass); font-weight:600; }
+  .entry h3{ font-size: 1.15rem; }
+  .entry p{ color: var(--text-soft); font-size:0.92rem; }
 
   /* ---------- Why us ---------- */
-  .why-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
-  .why-copy h2{ margin-bottom:20px; }
+  .why-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:64px; align-items:start; }
   .why-copy p{ color: var(--text-soft); margin-bottom:16px; font-size:1.02rem; }
-  .why-features{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-  .why-feature{ border-left: 2px solid var(--gold); padding: 4px 0 4px 18px; }
-  .why-feature h4{ font-family:'Inter', sans-serif; font-size:0.98rem; font-weight:700; margin-bottom:6px; color: var(--text); }
-  .why-feature p{ color: var(--text-soft); font-size:0.88rem; }
+  .tally-list{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--rule); }
+  .tally-item{
+    display:flex; gap:16px; align-items:flex-start;
+    padding: 20px 0; border-bottom: 1px solid var(--rule);
+  }
+  .tally-mark{
+    font-family:'IBM Plex Mono', monospace; color: var(--brass); font-weight:600; font-size:0.9rem;
+    flex-shrink:0; width: 26px;
+  }
+  .tally-item h4{ font-family:'Source Sans 3', sans-serif; font-size:0.98rem; font-weight:700; margin-bottom:4px; }
+  .tally-item p{ color: var(--text-soft); font-size:0.88rem; }
 
   /* ---------- How it works ---------- */
-  .steps-row{ display:grid; grid-template-columns: repeat(4,1fr); position:relative; }
-  .steps-row::before{
-    content:""; position:absolute; top:21px; left:8%; right:8%; height:1px; background: var(--line-strong);
+  .process{ border-top: 1.5px solid var(--ink); }
+  .process-row{
+    display:grid; grid-template-columns: 90px 1fr;
+    border-bottom: 1px solid var(--rule);
   }
-  .step{ position:relative; text-align:center; padding:0 18px; }
-  .step-num{
-    width:44px; height:44px; border-radius:50%; background: var(--bg);
-    border: 1px solid var(--gold); color: var(--gold-soft);
-    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.92rem;
-    margin: 0 auto 20px; position:relative; z-index:2;
+  .process-row .pn{
+    font-family:'Spectral', serif; font-size:2rem; color: var(--rule);
+    padding: 26px 0; border-right: 1px solid var(--rule);
+    -webkit-text-stroke: 1px var(--ink);
+    color: transparent;
   }
-  .step h4{ font-size:1.1rem; margin-bottom:8px; }
-  .step p{ color: var(--text-soft); font-size:0.88rem; }
+  .process-row-inner{ padding: 26px 0 26px 28px; }
+  .process-row h4{ font-size:1.08rem; margin-bottom:6px; }
+  .process-row p{ color: var(--text-soft); font-size:0.9rem; }
 
   /* ---------- Pricing ---------- */
-  .pricing-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:22px; align-items:stretch; }
-  .price-card{
-    border-radius:14px; padding: 34px 28px; display:flex; flex-direction:column;
-    border: 1px solid var(--line); background: var(--panel);
+  .pricing-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:0; border: 1.5px solid var(--ink); }
+  .price-sheet{
+    padding: 34px 28px;
+    border-right: 1px solid var(--ink);
+    display:flex; flex-direction:column;
   }
-  .price-card.featured{
-    background: linear-gradient(165deg, #23281F 0%, #181C15 100%);
-    border: 1px solid rgba(201,162,39,0.4);
-    box-shadow: 0 0 0 1px rgba(201,162,39,0.08), 0 24px 50px rgba(0,0,0,0.4);
-    transform: translateY(-8px);
+  .price-sheet:last-child{ border-right:none; }
+  .price-sheet.featured{ background: var(--ink); color: var(--paper); }
+  .sheet-tab{
+    font-family:'IBM Plex Mono', monospace; font-size:0.7rem; letter-spacing:0.05em;
+    color: var(--brass); margin-bottom: 14px;
   }
-  .price-tag{
-    display:inline-block; font-size:0.7rem; font-weight:700; letter-spacing:0.03em;
-    color: var(--bg-deep); background: var(--gold); padding:5px 12px; border-radius:20px; margin-bottom:18px; width:fit-content;
+  .price-sheet.featured .sheet-tab{ color: var(--brass-light); }
+  .price-sheet h3{ font-size:1.2rem; margin-bottom:6px; }
+  .price-sheet.featured h3{ color: var(--paper); }
+  .plan-desc{ color: var(--text-soft); font-size:0.85rem; margin-bottom: 20px; }
+  .price-sheet.featured .plan-desc{ color: rgba(245,241,228,0.62); }
+  .price-amount{
+    font-family:'IBM Plex Mono', monospace; margin-bottom: 22px; padding-bottom:20px;
+    border-bottom: 1px dashed var(--rule);
   }
-  .price-card h3{ font-size:1.28rem; margin-bottom:8px; }
-  .plan-desc{ color: var(--text-soft); font-size:0.86rem; margin-bottom:22px; }
-  .price-amount{ display:flex; align-items:baseline; gap:6px; margin-bottom:24px; padding-bottom:22px; border-bottom:1px solid var(--line); }
-  .price-amount .num{ font-family:'Cormorant Garamond', serif; font-size:2.5rem; font-weight:600; }
-  .price-amount .per{ color: var(--text-soft); font-size:0.84rem; }
-  .price-features{ flex:1; margin-bottom:24px; }
-  .price-features li{ display:flex; gap:10px; align-items:flex-start; font-size:0.88rem; padding:7px 0; color: var(--text); }
-  .price-features li svg{ color: var(--gold); flex-shrink:0; margin-top:3px; }
+  .price-sheet.featured .price-amount{ border-bottom-color: rgba(245,241,228,0.2); }
+  .price-amount .num{ font-size: 2rem; font-weight:600; }
+  .price-amount .per{ font-size:0.74rem; color: var(--text-soft); display:block; margin-top:4px; }
+  .price-sheet.featured .price-amount .per{ color: rgba(245,241,228,0.55); }
+  .price-features{ flex:1; margin-bottom: 24px; }
+  .price-features li{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+    padding: 8px 0; border-bottom: 1px dotted var(--rule);
+    display:flex; gap:8px;
+  }
+  .price-sheet.featured .price-features li{ border-bottom-color: rgba(245,241,228,0.14); color: rgba(245,241,228,0.85); }
+  .price-features li::before{ content:"§"; color: var(--brass); }
 
-  /* ---------- Results ---------- */
-  .results-band{ background: var(--bg-deep); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .results-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:40px; }
-  .result-item .figure{ font-family:'Cormorant Garamond', serif; font-size: clamp(1.5rem,2.4vw,1.9rem); color: var(--gold-soft); margin-bottom:10px; }
-  .result-item p{ color: var(--text-soft); font-size:0.9rem; }
+  /* ---------- Results band ---------- */
+  .results-band{ background: var(--ink); color: var(--paper); }
+  .results-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap: 40px; }
+  .result-item .figure{
+    font-family:'Spectral', serif; font-size: clamp(1.4rem,2.2vw,1.7rem); color: var(--brass-light);
+    margin-bottom:10px;
+  }
+  .result-item p{ color: rgba(245,241,228,0.6); font-size:0.88rem; }
 
   /* ---------- About ---------- */
-  .about-grid{ display:grid; grid-template-columns: 1fr 0.9fr; gap:64px; align-items:center; }
-  .about-copy h2{ margin-bottom:20px; }
+  .about-grid{ display:grid; grid-template-columns: 1fr 0.9fr; gap: 64px; align-items:center; }
   .about-copy p{ color: var(--text-soft); margin-bottom:16px; font-size:1.02rem; }
-  .about-cards{ display:flex; flex-direction:column; gap:16px; }
-  .about-card{
-    background: var(--panel); border:1px solid var(--line); border-radius: var(--radius);
-    padding:22px 24px; display:flex; gap:16px; align-items:flex-start;
+  .about-ledger{ border: 1.5px solid var(--ink); background: var(--paper-deep); }
+  .about-ledger-row{
+    display:flex; gap:16px; padding: 20px 24px; border-bottom: 1px solid var(--rule); align-items:flex-start;
   }
-  .about-card .icon-box{
-    width:38px; height:38px; border-radius:8px; background: rgba(201,162,39,0.14);
-    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  .about-ledger-row:last-child{ border-bottom:none; }
+  .about-ledger-row .mk{
+    font-family:'IBM Plex Mono', monospace; color: var(--brass); font-weight:600; flex-shrink:0;
   }
-  .about-card h4{ font-family:'Inter', sans-serif; font-size:0.96rem; font-weight:700; margin-bottom:4px; color: var(--text); }
-  .about-card p{ color: var(--text-soft); font-size:0.86rem; margin:0; }
+  .about-ledger-row h4{ font-family:'Source Sans 3', sans-serif; font-size:0.96rem; font-weight:700; margin-bottom:4px; }
+  .about-ledger-row p{ color: var(--text-soft); font-size:0.86rem; margin:0; }
 
   /* ---------- Final CTA ---------- */
   .final-cta{
-    background: radial-gradient(700px 320px at 50% -20%, rgba(201,162,39,0.1), transparent 60%), var(--bg-deep);
-    text-align:center; padding: 100px 0; border-top: 1px solid var(--line);
+    background: var(--ink); color: var(--paper); text-align:center; padding: 92px 0; position:relative;
   }
-  .final-cta h2{ font-size: clamp(2rem,3.6vw,2.8rem); max-width:680px; margin:0 auto 18px; }
-  .final-cta p{ color: var(--text-soft); max-width:480px; margin:0 auto 36px; font-size:1.02rem; }
+  .final-cta h2{ color: var(--paper); font-size: clamp(1.9rem,3.4vw,2.6rem); max-width:660px; margin:0 auto 18px; }
+  .final-cta p{ color: rgba(245,241,228,0.65); max-width:460px; margin:0 auto 34px; font-size:1rem; }
   .final-cta-actions{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
 
   /* ---------- Footer ---------- */
-  footer{ background: var(--bg-deep); color: var(--text-soft); padding: 68px 0 26px; }
-  .footer-grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:44px; border-bottom:1px solid var(--line); }
-  .footer-brand .brand{ margin-bottom:16px; }
-  .footer-desc{ font-size:0.86rem; line-height:1.7; max-width:280px; }
-  .footer-col h5{ color: var(--text); font-size:0.84rem; font-weight:600; letter-spacing:0.02em; margin-bottom:18px; }
-  .footer-col ul li{ margin-bottom:12px; }
-  .footer-col ul li a{ font-size:0.86rem; transition: color .18s ease; }
-  .footer-col ul li a:hover{ color: var(--gold-soft); }
-  .footer-contact li{ font-size:0.86rem; margin-bottom:12px; }
-  .footer-bottom{ display:flex; justify-content:space-between; padding-top:24px; flex-wrap:wrap; gap:14px; }
-  .footer-copy{ font-size:0.78rem; }
-  .social-row{ display:flex; gap:12px; }
-  .social-row a{
-    width:36px; height:36px; border-radius:50%; border:1px solid var(--line-strong);
-    display:flex; align-items:center; justify-content:center; transition: border-color .18s ease, color .18s ease;
+  footer{ padding: 64px 0 28px; border-top: 1.5px solid var(--ink); }
+  .footer-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap:40px;
+    padding-bottom: 44px; border-bottom: 1px solid var(--rule);
   }
-  .social-row a:hover{ border-color: var(--gold); color: var(--gold-soft); }
+  .footer-brand .brand{ margin-bottom:16px; }
+  .footer-desc{ font-size:0.86rem; color: var(--text-soft); max-width:280px; line-height:1.7; }
+  .footer-col h5{
+    font-family:'IBM Plex Mono', monospace; font-size:0.74rem; letter-spacing:0.05em;
+    color: var(--brass); margin-bottom:16px;
+  }
+  .footer-col ul li{ margin-bottom:11px; }
+  .footer-col ul li a{ font-size:0.86rem; color: var(--text-soft); transition: color .18s ease; }
+  .footer-col ul li a:hover{ color: var(--ink); }
+  .footer-contact li{ font-size:0.86rem; color: var(--text-soft); margin-bottom:11px; }
+  .footer-bottom{
+    display:flex; justify-content:space-between; padding-top:24px; flex-wrap:wrap; gap:12px;
+  }
+  .footer-copy{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color: var(--text-soft); }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 980px){
     .hero-grid{ grid-template-columns:1fr; gap:44px; padding-bottom:56px; }
-    .vault-visual{ aspect-ratio:16/10; order:-1; }
-    .services-grid{ grid-template-columns: repeat(2,1fr); }
     .why-grid, .about-grid{ grid-template-columns:1fr; gap:36px; }
     .pricing-grid{ grid-template-columns:1fr; }
-    .price-card.featured{ transform:none; order:-1; }
+    .price-sheet{ border-right:none; border-bottom: 1px solid var(--ink); }
+    .price-sheet:last-child{ border-bottom:none; }
     .results-grid{ grid-template-columns: repeat(2,1fr); gap:32px; }
-    .steps-row{ grid-template-columns:1fr; gap:36px; }
-    .steps-row::before{ display:none; }
-    .footer-grid{ grid-template-columns:1fr 1fr; }
+    .entry{ grid-template-columns: 50px 1fr; }
+    .entry p{ grid-column: 2 / 3; }
+    .footer-grid{ grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 720px){
     nav.primary-links{ display:none; }
     .menu-toggle{ display:flex; }
     .nav-actions .btn-line{ display:none; }
-    section{ padding: 66px 0; }
+    section{ padding: 64px 0; }
     .wrap{ padding: 0 20px; }
-    .services-grid{ grid-template-columns:1fr; }
-    .why-features{ grid-template-columns:1fr; }
-    .trust-bar-inner{ justify-content:flex-start; }
+    .trust-strip-inner{ justify-content:flex-start; }
     .trust-item{ justify-content:flex-start; flex: 1 1 45%; }
-    .results-grid{ grid-template-columns:1fr 1fr; }
-    .footer-grid{ grid-template-columns:1fr; gap:30px; }
+    .results-grid{ grid-template-columns: 1fr 1fr; }
+    .footer-grid{ grid-template-columns: 1fr; gap:30px; }
     .hero-ctas .btn, .final-cta-actions .btn{ width:100%; }
     .hero-ctas, .final-cta-actions{ flex-direction:column; }
+    .entry{ grid-template-columns: 40px 1fr; gap:16px; padding: 22px 0; }
   }
 </style>
 </head>
@@ -328,14 +390,14 @@
       <span class="brand-mark">CB</span>
       <span class="brand-text">
         <span class="name">CBATX</span>
-        <span class="sub">PRIVATE BOOKKEEPING</span>
+        <span class="sub">LEDGER &amp; ADVISORY</span>
       </span>
     </a>
     <nav class="primary-links" aria-label="Primary">
       <a href="#home" class="active">Home</a>
       <a href="#services">Services</a>
       <a href="#about">About</a>
-      <a href="#how-it-works">How It Works</a>
+      <a href="#how-it-works">Process</a>
       <a href="#pricing">Pricing</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -350,10 +412,10 @@
     <a href="#home">Home</a>
     <a href="#services">Services</a>
     <a href="#about">About</a>
-    <a href="#how-it-works">How It Works</a>
+    <a href="#how-it-works">Process</a>
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact</a>
-    <a href="#contact" class="btn btn-gold">Get Started</a>
+    <a href="#contact" class="btn btn-brass">Get Started</a>
   </div>
 </header>
 
@@ -361,84 +423,71 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow">Professional Bookkeeping &amp; Accounting</span>
-        <h1>You build the business.<span class="line-gold">We handle the numbers.</span></h1>
-        <p class="hero-lede">CBATX keeps Texas businesses organized, accurate, and ready to grow — with clean books, clear reporting, and a team that actually picks up the phone.</p>
+        <span class="ledger-tab"><span class="n">No. 001</span> — Professional Bookkeeping</span>
+        <h1>Every dollar, <em>accounted for.</em></h1>
+        <p class="hero-lede">CBATX keeps the books for Texas businesses — reconciled, reported, and ready — so you can run the business instead of chasing the numbers.</p>
         <div class="hero-ctas">
-          <a href="#contact" class="btn btn-gold">Get Started</a>
+          <a href="#contact" class="btn btn-brass">Get Started</a>
           <a href="#contact" class="btn btn-line">Talk to Us</a>
-          <a href="#contact" class="btn btn-panel">Contact Us</a>
         </div>
-        <div class="trust-line"><span class="dot"></span> Trusted by small businesses and startups across Texas</div>
+        <div class="hero-footnote">Serving small businesses and startups across Texas</div>
       </div>
-      <div class="vault-visual reveal">
-        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract illustration of concentric rings resembling a vault dial with a ledger line">
-          <circle cx="150" cy="150" r="128" fill="none" stroke="rgba(201,162,39,0.18)" stroke-width="1"/>
-          <circle cx="150" cy="150" r="102" fill="none" stroke="rgba(201,162,39,0.28)" stroke-width="1"/>
-          <circle cx="150" cy="150" r="76" fill="none" stroke="rgba(237,239,243,0.12)" stroke-width="1"/>
-          <circle cx="150" cy="150" r="50" fill="none" stroke="#C9A227" stroke-width="1.5"/>
-          <g stroke="rgba(201,162,39,0.5)" stroke-width="1">
-            <line x1="150" y1="18" x2="150" y2="34"/>
-            <line x1="150" y1="266" x2="150" y2="282"/>
-            <line x1="18" y1="150" x2="34" y2="150"/>
-            <line x1="266" y1="150" x2="282" y2="150"/>
-          </g>
-          <polyline points="90,182 118,158 140,170 168,132 190,148 222,110" fill="none" stroke="#E0C05C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="222" cy="110" r="4.5" fill="#E0C05C"/>
-          <circle cx="150" cy="150" r="4" fill="#C9A227"/>
-        </svg>
-        <div class="vault-caption">
-          <span class="dotmk"></span>
-          <div class="vault-caption-text">
-            <strong>Serving Texas Businesses</strong>
-            <span>Trusted business financial support</span>
-          </div>
+      <div class="ledger-card reveal">
+        <div class="ledger-stamp"><span>EST.<br>TEXAS</span></div>
+        <div class="ledger-card-head">
+          <span class="title">Monthly Statement</span>
+          <span class="ref mono">REF // CBATX-01</span>
         </div>
+        <div class="ledger-row"><span class="label">Books reconciled</span><span class="val brass">Current</span></div>
+        <div class="ledger-row"><span class="label">Reports delivered</span><span class="val">On schedule</span></div>
+        <div class="ledger-row"><span class="label">Dedicated bookkeeper</span><span class="val brass">Assigned</span></div>
+        <div class="ledger-row"><span class="label">Hidden charges</span><span class="val">None</span></div>
+        <div class="ledger-row"><span class="label">Status</span><span class="val brass">Organized &amp; ready</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="trust-bar">
-  <div class="wrap trust-bar-inner">
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/></svg> Secure &amp; Confidential</div>
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Reliable Support</div>
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg> Transparent Pricing</div>
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg> Accurate Books</div>
-    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 018 0v2"/></svg> Business-Focused</div>
+<div class="trust-strip">
+  <div class="wrap trust-strip-inner">
+    <div class="trust-item"><span class="mk">§</span> Secure &amp; Confidential</div>
+    <div class="trust-item"><span class="mk">§</span> Reliable Support</div>
+    <div class="trust-item"><span class="mk">§</span> Transparent Pricing</div>
+    <div class="trust-item"><span class="mk">§</span> Accurate Books</div>
+    <div class="trust-item"><span class="mk">§</span> Business-Focused</div>
   </div>
 </div>
 
 <section id="services">
   <div class="wrap">
-    <div class="section-head center reveal">
-      <div class="section-kicker">Our Services</div>
-      <h2>Everything your business needs.</h2>
+    <div class="section-head reveal">
+      <div class="section-no">Ledger — Services</div>
+      <h2>Everything your business needs, itemized.</h2>
       <p>Professional financial support designed to keep your business organized, accurate, and moving forward.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+    <div class="entry-list reveal">
+      <div class="entry">
+        <div class="entry-no">01</div>
         <h3>Bookkeeping</h3>
         <p>Accurate, consistent monthly record keeping so your books stay current and audit-ready year round.</p>
       </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+      <div class="entry">
+        <div class="entry-no">02</div>
         <h3>Bank &amp; Credit Card Reconciliation</h3>
         <p>Every transaction matched and verified, so your accounts stay balanced and dependable.</p>
       </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2"/><path d="M13 12h8m0 0l-3-3m3 3l-3 3"/></svg></div>
+      <div class="entry">
+        <div class="entry-no">03</div>
         <h3>Accounts Payable &amp; Receivable</h3>
         <p>Bills tracked, invoices sent, and payments followed up on, so cash flow stays predictable.</p>
       </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 4 5-9"/></svg></div>
+      <div class="entry">
+        <div class="entry-no">04</div>
         <h3>Financial Reporting</h3>
         <p>Clear monthly P&amp;L, balance sheet, and cash flow reports that make sense at a glance.</p>
       </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></div>
+      <div class="entry">
+        <div class="entry-no">05</div>
         <h3>Tax-Ready Organization</h3>
         <p>Clean, categorized records handed off ready for you or your tax professional — no scrambling.</p>
       </div>
@@ -446,20 +495,32 @@
   </div>
 </section>
 
-<section class="section-panel" id="about-why">
+<section id="about-why" style="background: var(--paper-deep);">
   <div class="wrap">
     <div class="why-grid">
       <div class="why-copy reveal">
-        <div class="section-kicker">Why CBATX</div>
+        <div class="section-no">Why CBATX</div>
         <h2>More than numbers. Your financial partner.</h2>
         <p>Bookkeeping is more than data entry — it's the foundation business owners rely on to make good decisions. CBATX combines accuracy with clear communication, so you always know where your business stands.</p>
         <p>We work as an extension of your team, not a distant vendor. That means real conversations, prompt answers, and books you can actually trust.</p>
       </div>
-      <div class="why-features reveal">
-        <div class="why-feature"><h4>Reliable &amp; Accurate</h4><p>Consistent monthly close and careful attention to every entry.</p></div>
-        <div class="why-feature"><h4>Human Support</h4><p>A dedicated bookkeeper who knows your business, not a ticket queue.</p></div>
-        <div class="why-feature"><h4>Transparent Process</h4><p>Clear reporting and plain-language explanations, always.</p></div>
-        <div class="why-feature"><h4>Built for Growth</h4><p>Financial organization that scales as your business does.</p></div>
+      <div class="tally-list reveal">
+        <div class="tally-item">
+          <span class="tally-mark">/ /</span>
+          <div><h4>Reliable &amp; Accurate</h4><p>Consistent monthly close and careful attention to every entry.</p></div>
+        </div>
+        <div class="tally-item">
+          <span class="tally-mark">/ /</span>
+          <div><h4>Human Support</h4><p>A dedicated bookkeeper who knows your business, not a ticket queue.</p></div>
+        </div>
+        <div class="tally-item">
+          <span class="tally-mark">/ /</span>
+          <div><h4>Transparent Process</h4><p>Clear reporting and plain-language explanations, always.</p></div>
+        </div>
+        <div class="tally-item">
+          <span class="tally-mark">/ /</span>
+          <div><h4>Built for Growth</h4><p>Financial organization that scales as your business does.</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -468,64 +529,78 @@
 <section id="how-it-works">
   <div class="wrap">
     <div class="section-head center reveal">
-      <div class="section-kicker">How It Works</div>
+      <div class="section-no">Process</div>
       <h2>Easy to get started.</h2>
       <p>A simple, four-step process to get your books organized and stay that way.</p>
     </div>
-    <div class="steps-row reveal">
-      <div class="step"><div class="step-num">01</div><h4>Contact Us</h4><p>Call, WhatsApp, or email — tell us about your business.</p></div>
-      <div class="step"><div class="step-num">02</div><h4>Connect Your Accounts</h4><p>We work securely with the tools you already use.</p></div>
-      <div class="step"><div class="step-num">03</div><h4>We Handle the Work</h4><p>Your books get organized, reconciled, and kept current.</p></div>
-      <div class="step"><div class="step-num">04</div><h4>Receive Clear Reports</h4><p>Monthly reporting you can actually understand and use.</p></div>
+    <div class="process reveal">
+      <div class="process-row">
+        <div class="pn">01</div>
+        <div class="process-row-inner"><h4>Contact Us</h4><p>Call, WhatsApp, or email — tell us about your business.</p></div>
+      </div>
+      <div class="process-row">
+        <div class="pn">02</div>
+        <div class="process-row-inner"><h4>Connect Your Accounts</h4><p>We work securely with the tools you already use.</p></div>
+      </div>
+      <div class="process-row">
+        <div class="pn">03</div>
+        <div class="process-row-inner"><h4>We Handle the Work</h4><p>Your books get organized, reconciled, and kept current.</p></div>
+      </div>
+      <div class="process-row">
+        <div class="pn">04</div>
+        <div class="process-row-inner"><h4>Receive Clear Reports</h4><p>Monthly reporting you can actually understand and use.</p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section-panel" id="pricing">
+<section id="pricing" style="background: var(--paper-deep);">
   <div class="wrap">
     <div class="section-head center reveal">
-      <div class="section-kicker">Pricing</div>
+      <div class="section-no">Pricing</div>
       <h2>Simple pricing. No surprises.</h2>
       <p>Clear, predictable plans built for businesses at every stage — with no hidden charges.</p>
     </div>
-    <div class="pricing-grid">
-      <div class="price-card reveal">
+    <div class="pricing-grid reveal">
+      <div class="price-sheet">
+        <span class="sheet-tab mono">SHEET A</span>
         <h3>Essential</h3>
         <p class="plan-desc">For solo entrepreneurs and single-owner businesses.</p>
-        <div class="price-amount"><span class="num">$99</span><span class="per">/ month</span></div>
+        <div class="price-amount"><span class="num">$99</span><span class="per">PER MONTH</span></div>
         <ul class="price-features">
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Up to 100 transactions / month</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Bank &amp; credit card reconciliation</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Monthly P&amp;L and balance sheet</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Dedicated bookkeeper</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Same-business-day response</li>
+          <li>Up to 100 transactions / month</li>
+          <li>Bank &amp; credit card reconciliation</li>
+          <li>Monthly P&amp;L and balance sheet</li>
+          <li>Dedicated bookkeeper</li>
+          <li>Same-business-day response</li>
         </ul>
         <a href="#contact" class="btn btn-line btn-full">Talk to Us</a>
       </div>
-      <div class="price-card featured reveal">
-        <span class="price-tag">Most Popular</span>
+      <div class="price-sheet featured">
+        <span class="sheet-tab mono">SHEET B — MOST CHOSEN</span>
         <h3>Growth</h3>
         <p class="plan-desc">For growing businesses with employees and vendors.</p>
-        <div class="price-amount"><span class="num">$129</span><span class="per">/ month</span></div>
+        <div class="price-amount"><span class="num">$129</span><span class="per">PER MONTH</span></div>
         <ul class="price-features">
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Everything in Essential</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Payroll setup and support</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Customized invoicing included</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Accounts payable &amp; receivable</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Full data ownership, always</li>
+          <li>Everything in Essential</li>
+          <li>Payroll setup and support</li>
+          <li>Customized invoicing included</li>
+          <li>Accounts payable &amp; receivable</li>
+          <li>Full data ownership, always</li>
         </ul>
-        <a href="#contact" class="btn btn-gold btn-full">Talk to Us</a>
+        <a href="#contact" class="btn btn-brass btn-full">Talk to Us</a>
       </div>
-      <div class="price-card reveal">
+      <div class="price-sheet">
+        <span class="sheet-tab mono">SHEET C</span>
         <h3>Premium</h3>
         <p class="plan-desc">For established businesses with higher volume.</p>
-        <div class="price-amount"><span class="num">$0.50</span><span class="per">/ extra transaction</span></div>
+        <div class="price-amount"><span class="num">$0.50</span><span class="per">PER EXTRA TRANSACTION</span></div>
         <ul class="price-features">
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Everything in Growth</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Beyond first 100 transactions</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Priority reporting turnaround</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Custom financial workflows</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> No hidden charges, ever</li>
+          <li>Everything in Growth</li>
+          <li>Beyond first 100 transactions</li>
+          <li>Priority reporting turnaround</li>
+          <li>Custom financial workflows</li>
+          <li>No hidden charges, ever</li>
         </ul>
         <a href="#contact" class="btn btn-line btn-full">Talk to Us</a>
       </div>
@@ -535,7 +610,7 @@
 
 <div class="results-band">
   <div class="wrap">
-    <section style="padding: 78px 0;">
+    <section style="padding: 76px 0;">
       <div class="results-grid reveal">
         <div class="result-item"><div class="figure">Accurate Books</div><p>Reconciled monthly, with nothing left to guess at.</p></div>
         <div class="result-item"><div class="figure">Timely Reports</div><p>Reporting delivered on a consistent monthly schedule.</p></div>
@@ -550,22 +625,22 @@
   <div class="wrap">
     <div class="about-grid">
       <div class="about-copy reveal">
-        <div class="section-kicker">About CBATX</div>
+        <div class="section-no">About CBATX</div>
         <h2>Built on trust. Focused on your success.</h2>
         <p>CBATX was founded to give Texas business owners a better option than an expensive accounting firm or impersonal automated software — professional bookkeeping delivered with real communication.</p>
         <p>We believe in accuracy, reliability, and long-term relationships. Every business we work with gets a dedicated bookkeeper who understands their numbers and answers when they call.</p>
       </div>
-      <div class="about-cards reveal">
-        <div class="about-card">
-          <div class="icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div class="about-ledger reveal">
+        <div class="about-ledger-row">
+          <span class="mk mono">01</span>
           <div><h4>Accuracy First</h4><p>Careful, detail-driven bookkeeping you can rely on.</p></div>
         </div>
-        <div class="about-card">
-          <div class="icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="about-ledger-row">
+          <span class="mk mono">02</span>
           <div><h4>Real Communication</h4><p>Direct access to your bookkeeper, not a support queue.</p></div>
         </div>
-        <div class="about-card">
-          <div class="icon-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="about-ledger-row">
+          <span class="mk mono">03</span>
           <div><h4>Long-Term Relationships</h4><p>We grow alongside the businesses we support.</p></div>
         </div>
       </div>
@@ -578,8 +653,8 @@
     <h2>Ready to take control of your business finances?</h2>
     <p>Let's build a cleaner, more organized financial foundation for your business.</p>
     <div class="final-cta-actions">
-      <a href="#" class="btn btn-gold">Get Started</a>
-      <a href="#" class="btn btn-line">Contact Us</a>
+      <a href="#" class="btn btn-brass">Get Started</a>
+      <a href="#" class="btn btn-line-light">Contact Us</a>
     </div>
   </div>
 </section>
@@ -595,16 +670,16 @@
         <p class="footer-desc">Professional bookkeeping and financial support for small businesses across Texas — accurate, transparent, and human.</p>
       </div>
       <div class="footer-col">
-        <h5>Quick Links</h5>
+        <h5>QUICK LINKS</h5>
         <ul>
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#how-it-works">Process</a></li>
           <li><a href="#pricing">Pricing</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Services</h5>
+        <h5>SERVICES</h5>
         <ul>
           <li><a href="#services">Bookkeeping</a></li>
           <li><a href="#services">Reconciliation</a></li>
@@ -613,22 +688,17 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Contact</h5>
+        <h5>CONTACT</h5>
         <ul class="footer-contact">
           <li>Serving businesses throughout Texas</li>
           <li>hello@cbatx.com</li>
           <li>(555) 010-2040</li>
         </ul>
-        <div class="social-row" style="margin-top:18px;">
-          <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.12 2.49 2.5zM.5 8.5h4V23h-4V8.5zM8.5 8.5h3.8v2h.05c.53-1 1.83-2.05 3.76-2.05 4.02 0 4.76 2.64 4.76 6.08V23h-4v-6.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.7-2.5 3.44V23h-4V8.5z"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.3.15 4.8 1.7 5 5 .06 1.3.07 1.6.07 4.8s0 3.5-.07 4.8c-.15 3.3-1.7 4.8-5 5-1.3.06-1.6.07-4.9.07s-3.6 0-4.9-.07c-3.3-.15-4.8-1.7-5-5C2.05 15.5 2 15.2 2 12s0-3.5.07-4.8c.15-3.3 1.7-4.8 5-5C8.4 2.2 8.7 2.2 12 2.2zm0 2c-3.1 0-3.5 0-4.7.07-2.4.1-3.5 1.2-3.6 3.6-.06 1.2-.07 1.5-.07 4.7s0 3.5.07 4.7c.1 2.4 1.2 3.5 3.6 3.6 1.2.06 1.6.07 4.7.07s3.5 0 4.7-.07c2.4-.1 3.5-1.2 3.6-3.6.06-1.2.07-1.5.07-4.7s0-3.5-.07-4.7c-.1-2.4-1.2-3.5-3.6-3.6-1.2-.06-1.6-.07-4.7-.07zm0 3.4a4.4 4.4 0 110 8.8 4.4 4.4 0 010-8.8zm0 2a2.4 2.4 0 100 4.8 2.4 2.4 0 000-4.8zm5.6-2.6a1 1 0 110 2.1 1 1 0 010-2.1z"/></svg></a>
-        </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 CBATX. All rights reserved.</span>
-      <span class="footer-copy">Frisco, Texas</span>
+      <span class="footer-copy">© 2026 CBATX. ALL RIGHTS RESERVED.</span>
+      <span class="footer-copy">FRISCO, TEXAS</span>
     </div>
   </div>
 </footer>
